@@ -3,6 +3,7 @@
 use App\Models\Dish;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\DishController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\NotiViewController;
@@ -44,3 +45,20 @@ Route::post('/order', [OrderController::class, 'store'])->name('order.form');// 
 //Notification
 Route::get('/noti', [NotificationController::class, 'index']);
 Route::get('/noti/view/{id}', [NotiViewController::class, 'view'])->name('noti.view');
+
+//Add to cart
+
+Auth::routes();
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/products', [CartController::class, 'showProducts'])->name('products.list');
+    Route::post('/add-to-cart/{id}', [CartController::class, 'addToCart'])->name('cart.add');
+    Route::get('/cart', [CartController::class, 'showCart'])->name('view');
+    Route::post('/cart/place-order', [CartController::class, 'placeOrder'])->name('cart.order');
+    // Update quantity
+Route::post('/cart/update/{id}', [CartController::class, 'updateCart'])->name('cart.update');
+
+// Remove item
+Route::post('/cart/remove/{id}', [CartController::class, 'removeCartItem'])->name('cart.remove');
+
+});

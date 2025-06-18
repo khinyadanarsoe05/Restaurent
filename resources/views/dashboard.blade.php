@@ -10,8 +10,11 @@
 <body>
     <!-- Bell Icon -->
 <div>
+
+
     <button onclick="toggleNoti()" style="position: relative; border: none; background-color: transparent; font-size: 18px;">
         <i class="bi bi-bell-fill "   ></i>
+
         @if ($unreadCount > 0)
             <span style="color: red; position: absolute; top: 0; right: 0; font-weight: bold;">
                 {{ $unreadCount }}

@@ -95,6 +95,7 @@ class DishController extends Controller
      //  $dish->dish_image=$imagePath;
 
         $dish->save();
+
         return redirect('/dish')->with('status','Successfully Updated');
     }
 

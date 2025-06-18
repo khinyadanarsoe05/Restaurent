@@ -10,6 +10,7 @@ class NotiViewController extends Controller
     $noti = Notification::findOrFail($id);
     $noti->viewed = true;
     $noti->save();
+    return view('/dashboard');
 
 }
 }
